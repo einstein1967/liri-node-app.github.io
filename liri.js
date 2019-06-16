@@ -8,6 +8,7 @@ var spotify = new Spotify(keys.spotify);
 var userInput = process.argv;
 var command = userInput[2];
 var name = "";
+var sort = true;
 
 for (var i = 3; i < userInput.length; i++) {
     name += userInput[i] + " ";
@@ -69,11 +70,17 @@ var justDoIt = function () {
                 console.log("Song name: " + response.tracks.items[0].name);
                 console.log("Preview link: " + response.tracks.items[0].preview_url);
                 console.log("Album: " + response.tracks.items[0].album);
+                sort = false;
             });
         } else {
+            sort = false;
             sortItOut();
         }
     });
+}
+
+if (sort) {
+    sortItOut();
 }
 
 var sortItOut = function () {
